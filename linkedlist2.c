@@ -47,7 +47,7 @@ void insert(int x,int pos)
       c++;
      }
      newnode->data=x;
-     if(count==pos)
+     if(count+1==pos)
        {newnode->link=NULL;
          temp->link=newnode;}
      else
@@ -144,7 +144,7 @@ int main(void)
             if(c==0)
               printf("\nNot found");
             else
-              printf("\nData found at postion %d",c);
+              printf("\nData found at position %d",c);
             break;
      case 4:printall();
             break;
