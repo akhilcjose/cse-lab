@@ -41,7 +41,7 @@ void insert(int x,int pos)
    else
     {
      temp=head;
-     while(c<pos-1)
+     while(c<(pos-1))
      {
       temp=temp->link;
       c++;
@@ -66,15 +66,24 @@ void delete(int pos)
  else
   {
    temp=head;
+   temp1=head;
    c=1;
-   while(c<=pos)
+   while(c<pos)
    {
     temp1=temp;
     temp=temp->link;
     c++;
    }
-   temp1->link=temp->link;
-   free(temp);
+   if(pos=1)
+   {
+    head=head->link;
+    free(temp);
+    }
+   else
+   {
+    temp1->link=temp->link;
+    free(temp);
+   }
   }
 }
 int search(int x2)
@@ -86,17 +95,17 @@ int search(int x2)
  else
   {
    temp=head;
-   count=0;
+   count=1;
    pos2=0;
-   while(temp->link!=NULL)
+   while(temp!=NULL)
    {
-    count++;
     if(temp->data==x2)
       {
        pos2=count;
        break;
       }
     temp=temp->link;
+    count++;
    }
   }
  return pos2;
@@ -113,21 +122,19 @@ void printall()
   {
    printf("%d-->",temp->data);
    temp=temp->link;
-  }while(temp->link!=NULL);
+  }while(temp!=NULL);
  }
 
 }
 int main(void)
 {
 
-  int x,pos,ch,x2,c;
+  int x,pos,ch,x2,c=0;
 
-  while(1)
+  while(ch!=5)
   {
-   printf("\n\tMENU\n1.Insertion\n2.Deletion\n3.Search\n4.Traverse\n5.Exit\nEnter choice: ");
+   printf("\n\tMENU\n1.Insertion\n2.Deletion\n3.Search\n4.print all\n5.Exit\nEnter choice: ");
    scanf("%d",&ch);
-   if(ch==5)
-      break;
    switch(ch)
    {
      case 1:printf("\nEnter data and position to be inserted: ");
@@ -148,6 +155,7 @@ int main(void)
             break;
      case 4:printall();
             break;
+     case 5:break;
      default:printf("\nInvalid choice");
    }
   }
