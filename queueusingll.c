@@ -31,11 +31,11 @@ void deletion()
 { 
  struct node *temp,*temp1;
  int d;
- temp=front;
  if(front==NULL||tail==NULL)
   printf("\nList is empty");
  else
   {
+   temp=front;          
    if(front==tail)
    {
     d=front->data;
@@ -45,14 +45,10 @@ void deletion()
     tail=NULL;
    }
   else
-  { temp1=tail;
-    while(temp1!=front)
-    {
-     temp1=temp1->link;
-    }
+  {
     d=temp->data;
+    front=temp->link;          
     free(temp);
-    front=temp1;
     printf("poped element is %d",d);
   }
 }
