@@ -22,7 +22,7 @@ void insertion(int data1)
    }
   else
   {
-   newnode->link=tail;
+   tail->link=newnode;
    tail=newnode;
   }
  }
@@ -58,18 +58,19 @@ void deletion()
 }
 }
 void display()
-{
+{int d;
  struct node *temp;
+ temp=front;
  if(tail==NULL||front==NULL)
    printf("\nList is empty" );
  else
  {
- temp=tail;
- do
-  {
-   printf("%d-->",temp->data);
+ while(temp!=NULL)
+ {
+   d=temp->data;
+   printf("%d-->",d);
    temp=temp->link;
-  }while(temp!=NULL);
+ }
  }
 }
 int main(void)
