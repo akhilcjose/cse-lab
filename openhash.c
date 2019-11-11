@@ -5,23 +5,19 @@ struct node
 	int data;
 	struct node *link;
 };
-struct node *h[50],*ptr,*ptr1,*new;
-
+struct node *h[10],*ptr,*ptr1,*new;
 void ins(int val,int n)
-{
+{       struct node* temp;
 	int i;
 	i=val%n;
-	h[i]=(struct node *)malloc(sizeof(struct node));
 	ptr=h[i];
 	new=(struct node *)malloc(sizeof(struct node));
 	new->data=val;
 	new->link=NULL;
 	int flag=0;
-	if(h[i]==NULL)
-	{	printf("kk");
-		ptr->link=new;
+	if(ptr==NULL)	h[i]=new;
 
-	}
+	
 	else
 	{
 		while(ptr!=NULL && flag==0)
@@ -29,19 +25,33 @@ void ins(int val,int n)
 
 			if(ptr->data==val)
 			{
-				flag=1;printf("go");
+				flag=1;
 				break;
 			}
-			else
-			{
-				ptr=ptr->link;
-			}
+                        temp=ptr;
+			ptr=ptr->link;
 		}
 		if(flag==0)
-			ptr->link=new;
+			temp->link=new;
 		else
 			printf("data already exists\n");
 	}
+}
+void print(int n)
+{
+ int q;
+struct node*ptr4;
+ for(int i=0;i<n;i++)
+  {
+   ptr4=h[i]; 
+   while(ptr4!=NULL)
+    {
+     q=ptr4->data;
+     printf("%d->",q);
+     ptr4=ptr4->link;
+     }
+   printf("\n");
+  }
 }
 void search(int key,int n)
 {
@@ -49,7 +59,7 @@ void search(int key,int n)
 	ptr1=h[i];
 	int flag=0;
 	while(ptr1!=NULL && flag==0)
-	{	printf("ojo");
+	{
 		if(ptr1->data==key)
 			flag=1;
 		else
@@ -61,15 +71,12 @@ void search(int key,int n)
 }
 int main()
 {
-	int i,ch,n,key;
-	printf("enter n: ");
-	scanf("%d",&n);
-	for(i=0;i<n;i++)
-	{
-			h[i]=(struct node *)malloc(sizeof(struct node));
-			h[i]=NULL;
-	}
-	while(1)
+ int i,ch,n=10,key;
+ for(i=0;i<n;i++)
+  {
+      h[i]=NULL;
+  }
+        while(ch!=0)
 	{
 		printf("\nenter choice 0.exit 1.insert 2.search 3.print\n");
 		scanf("%d",&ch);
@@ -86,5 +93,9 @@ int main()
 			scanf("%d",&key);
 			search(key,n);
 		}
-	}
-}
+               else if(ch==3)
+		{
+			printf("printed aray");
+			print(n);
+		}
+             

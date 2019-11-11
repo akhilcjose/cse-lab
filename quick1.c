@@ -8,9 +8,9 @@ int main(void){
     printf("Enter the elements of array\n");
     for(int i=0;i<n;i++) scanf("%d",&arr[i]);
     quicksort(arr,0,n-1);
-    for(int i=0;i<n;i++) printf("%d ",arr[i]);
+    printf("sorted array is:");
+    for(int i=0;i<n;i++) printf("%d \n",arr[i]);
 }
-
 void quicksort(int arr[],int low ,int high){
     if(low<high){
         int p=partition(arr,low,high);
@@ -18,7 +18,6 @@ void quicksort(int arr[],int low ,int high){
         quicksort(arr,p+1,high);
     }
 }
-
 int partition(int arr[],int low,int high){
     int pivot=arr[high];
     int i=low-1;

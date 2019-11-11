@@ -8,6 +8,7 @@ int main(void){
     printf("Enter the elements of array\n");
     for(int i=0;i<n;i++) scanf("%d",&arr[i]);
     heapsort(arr,n-1);
+    printf("sorted array is\n");
     for(int i=0;i<n;i++) printf("%d ",arr[i]);
 }
 
@@ -20,7 +21,6 @@ void heapsort(int arr[],int n){
         heapify(arr,i,0);
     }
 }
-
 void heapify(int arr[],int n,int i){
     int lar=i,l=(2*i)+1,r=(2*i)+2;
     if(l<n && arr[l]>arr[lar]) lar=l;
